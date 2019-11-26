@@ -26,6 +26,7 @@ class UserAvatarContainer: LayoutContainer {
 
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.layer.masksToBounds = true
+        //需要用owningView当做父视图
         owningView?.addSubview(avatarImageView)
         avatarImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true

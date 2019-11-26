@@ -1,14 +1,14 @@
 //
-//  UserAvatarFrameContainer.swift
+//  NormalUserAvatar.swift
 //  LayoutContainer
 //
-//  Created by jiaxin on 2019/6/10.
+//  Created by jiaxin on 2019/11/26.
 //  Copyright © 2019 jiaxin. All rights reserved.
 //
 
 import UIKit
 
-class UserAvatarFrameContainer: LayoutContainer {
+class NormalUserAvatar: UIView {
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "lufei.jpg")
@@ -22,22 +22,25 @@ class UserAvatarFrameContainer: LayoutContainer {
         return imageView
     }()
 
-    override func initializeViews() {
-        super.initializeViews()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
-        owningView?.addSubview(avatarImageView)
-        owningView?.addSubview(vipImageView)
+        addSubview(avatarImageView)
+        addSubview(vipImageView)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        //如果是通过frame布局，这里可以根据frame(不能使用layoutFrame)进行布局调整
-        //因为avatarImageView和vipImageView还是被添加到cell.contentView上面的，所以这里的frame依然是参考的cell.contentView的布局坐标，请务必熟记于心！！！
-        //比如avatarImageView的x是frame.origin.x而不是0，y是frame.origin.y而不是0，因为他们是被添加到cell.contentView上面的
         avatarImageView.layer.cornerRadius = bounds.size.height/2
-        avatarImageView.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+        avatarImageView.frame = CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height)
         let vipWidth: CGFloat = 30
         vipImageView.frame = CGRect(x: avatarImageView.frame.maxX - vipWidth, y: avatarImageView.frame.minY, width: vipWidth, height: vipWidth)
     }
+    
+
 }

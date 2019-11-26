@@ -46,7 +46,9 @@ open class LayoutContainer: UILayoutGuide {
         _ = UIView.swizzleLayoutSubviews
     }
 
+    /// 子视图需要在initializeViews方法里面进行初始化
     open func initializeViews() {}
+    /// 子视图的布局在layoutSubviews进行调整
     open func layoutSubviews() {}
 }
 
